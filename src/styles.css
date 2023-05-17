@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.list-group-item span{
+    cursor: pointer;
+    
+}
+.todo-item{
+    background-color: black;
+    border-color: white;
+    color: white;
+    word-wrap: break-word;
+}
+.plus-icon {
+    color: black;
+  }
+.card-bottom {
+    position: absolute;
+    bottom: 0;
+    height: 20%;
+    width: 100%;
+    background-color: rgb(90, 90, 90);
+} 
+.display-6 {
+    font-size: 2.5rem;
+
+}
+.display-7{
+    font-size: smaller;
+}
+.emailInput{
+    border-color: #f7f318;
+    border-width: 2px;
+    border-style: solid;
+}

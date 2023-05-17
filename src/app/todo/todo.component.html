@@ -1,0 +1,57 @@
+    <div *ngIf="isSignedIn">
+    <div class="card-header text-center py-4 border-0" style="color: hsl(59, 93%, 53%); font-size: 200px; margin-top: 20px;">
+        <h1 class="display-6 fw-bold fs-1">
+             To-do-List
+        </h1>
+    </div>
+    <div class="card-top text-center py-2 border-0" style="color: hsl(0, 0%, 100%)">
+        <h2 class="display-7 fw-bold fs-6" style="margin-bottom: 0;">
+            <i class="fa-solid fa-calendar-days" style="color: #ffffff; "></i>
+            {{ currentDate }}
+        </h2>
+    </div>
+    <div class="card-body p-4">
+        <div class="input-group input-group-sm">
+                    <textarea type="text" class="form-control border-black py-3 shadow rounded-3"
+                    placeholder="Enter To-Do" #titleInput style="background-color: rgb(90, 90, 90);position: relative; top: 490px; left: 15px;"></textarea> 
+                        <i class="fa-solid fa-circle fa-2xl" style="color: hsl(59, 93%, 53%);position: relative; top:466px; right: 155px; font-size: 2.2rem;"></i>
+                        <i class="fa-solid fa-plus fa-xl" (click)="onClick(titleInput)" style="color: #000000; position: absolute; top: 466.5px; right: 163px;"></i>      
+        </div>  
+            <ul class="list-group" style="max-height: 450px; overflow-y: scroll; margin-top: -80px;">
+            <li class="list-group-item mb-2 border py-3 rounded-3 todo-item" *ngFor="let item of todos">
+                <span>
+                    <i class="" 
+                       (click)="onStatusChange(item.id,!item.isDone)"
+                       [ngClass]="item.isDone?'fa-solid fa-circle-check':'fa-regular fa-circle'"
+                       style="color: hsl(59, 93%, 53%)"></i>
+                    <ng-container *ngIf="editingItem !== item; else editField">
+                    {{item.title}}
+                    <span class="float-end text-secondary">
+                        <i class="fa-solid fa-pencil" (click)="onEdit(item)" style="color: #ffffff; margin-right: 7px;"></i>
+                        <i class="fa-solid fa-trash-can"  
+                           (click)="onDelete(item.id)" 
+                           style="color: hsl(0, 0%, 100%)"></i>
+                    </span>
+                </ng-container>
+                <ng-template #editField>
+                    <div class="input-group">
+                        <textarea type="text" class="form-control border-0 py-0 shadow-none rounded-3" style="background-color: transparent; color: white;" [(ngModel)]="editingItem.title"></textarea> 
+                        <button class="btn text-warning border-0"
+                            (click)="onSave(editingItem, editingItem.title)"
+                            style="position: relative;">
+                                <i class="fa-solid fa-floppy-disk" style="color: #ffffff;"></i>
+                        </button>
+                    </div>
+                </ng-template>
+                </span>    
+            </li>
+        </ul>
+        <button class="btn border-0 rounded-5 shadow" style="width: 80px; background-color: #f7f318; color: black; position: absolute; top: 790px; left: 155px;" (click)="logout()" routerLink="/app/logout">Logout</button>
+        <button class="btn border-black rounded-5 shadow"
+        style="width: 80px; background-color: transparent; color: white; position: absolute; top: 790px; left: 20px;"
+        routerLink="/app/contact">Contact</button>
+        <button class="btn border-black rounded-5 shadow"
+        style="width: 80px; background-color: transparent; color: white; position: absolute; top: 790px; left: 290px;"
+        routerLink="/app/about">About</button>
+    </div>
+</div>
